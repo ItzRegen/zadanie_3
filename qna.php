@@ -1,3 +1,11 @@
+<?php
+  include_once "classes/QnA.php";
+  use otazkyodpovede\QnA;
+
+  $qna = new QnA();
+  $qna->insertQnA();
+  $data = $qna->getQnA(); 
+?>
 <!DOCTYPE html>
 <html lang="sk">
 <head>
@@ -31,19 +39,13 @@
       </div>
     </section>
       <section class="container">
-      <div class="accordion">
-        <div class="question">Otázka 1</div>
-        <div class="answer">Odpoveď 1</div>
-      </div>
-      <div class="accordion">
-        <div class="question">Otázka 2</div>
-        <div class="answer">Odpoveď 2</div>
-      </div>
-      <div class="accordion">
-        <div class="question">Otázka 3</div>
-        <div class="answer">Odpoveď 3</div>
-      </div>
-    </section>
+        <?php foreach ($data as $item): ?>
+          <div class="accordion">
+            <div class="question"><?php echo $item['otazka']; ?></div>
+            <div class="answer"><?php echo $item['odpoved']; ?></div>
+          </div>
+        <?php endforeach; ?>
+      </section>
     </section>
   </div>
   </main>
